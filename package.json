@@ -1,0 +1,31 @@
+{
+  "name": "qa-mart-pos-assessment",
+  "version": "1.0.0",
+  "description": "QA Mart POS — Desktop E2E & API Test Automation Suite (Playwright JavaScript + POM + Fixtures + Allure Report + Postman)",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:auth": "playwright test tests/specs/auth.spec.js",
+    "test:sale": "playwright test tests/specs/sale-catalog-cart.spec.js tests/specs/promo-calculation-payment.spec.js",
+    "test:tx": "playwright test tests/specs/transactions-void-rbac.spec.js",
+    "test:api": "playwright test tests/specs/api-business-rules.spec.js",
+    "report:html": "playwright show-report",
+    "allure:clean": "node -e \"const fs=require('fs'); fs.rmSync('allure-results',{recursive:true,force:true}); fs.rmSync('allure-report',{recursive:true,force:true});\"",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "test:allure": "npm run allure:clean && playwright test && npm run allure:generate",
+    "test:postman": "newman run postman/qa-mart-pos.postman_collection.json -e postman/qa-mart-pos.postman_environment.json",
+    "evidence:capture": "node tests/utils/capture-evidence.js && node tests/utils/capture-api-evidence.js",
+    "docs:generate": "node tests/utils/generate-excel.js && python tests/utils/generate_test_plan_docx.py && python tests/utils/generate_bug_reports_docx.py"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "allure-commandline": "^2.33.0",
+    "allure-playwright": "^3.2.1",
+    "dotenv": "^16.4.7",
+    "exceljs": "^4.4.0",
+    "newman": "^6.2.3"
+  }
+}
