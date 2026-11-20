@@ -425,5 +425,3 @@ _Detailed reproduction steps and embedded visual evidence are available in [Bug-
   ```
 
 ---
-
-_Submitted by Senior QA Automation Engineer Candidate for the POS - QA Engineer Skill Test._
